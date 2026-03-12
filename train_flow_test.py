@@ -527,8 +527,8 @@ def main():
             f.write("epoch,trn_loss,val_loss,lr,secs\n")
 
     best_val = float("inf")
-    print(f"\n{'Epoch':>5}  {'trn_loss':>10}  {'val_loss':>10}  {'lr':>10}  {'secs':>6}")
-    print("-" * 52)
+    print("\nEpoch progress")
+    print("-" * 60)
 
     for epoch in range(args.epochs):
         t0 = time.time()
@@ -543,8 +543,14 @@ def main():
         secs = time.time() - t0
         lr_now = scheduler.get_last_lr()[0]
 
-        print(f"{epoch:>5}  {trn_loss:>10.5f}  {val_loss:>10.5f}  "
-              f"{lr_now:>10.2e}  {secs:>6.1f}s")
+        print(
+            f"Epoch {epoch + 1}/{args.epochs} | "
+            f"train {trn_loss:.5f} | "
+            f"val {val_loss:.5f} | "
+            f"best {best_val:.5f} | "
+            f"lr {lr_now:.2e} | "
+            f"{secs:.1f}s"
+        )
 
         with open(log_path, "a") as f:
             f.write(f"{epoch},{trn_loss:.6f},{val_loss:.6f},{lr_now:.6e},{secs:.1f}\n")
