@@ -1,0 +1,11 @@
+__pycache__/
+*.py[cod]
+
+checkpoints_fm/
+checkpoints_generative*/
+
+logs/*.csv
+tasks/*.png
+
+final_beta_0313/**/best.pt
+final_beta_0313/**/ckpt_ep*.pt
